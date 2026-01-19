@@ -59,6 +59,7 @@
 //#define TRINAMIC_ENABLE       2130 // Uncomment to enable Trinamic TMC2130 driver support. NOTE: Experimental for now, currently for SKR 1.x boards only
 #define TRINAMIC_ENABLE       2209 // Uncomment to enable Trinamic TMC2209 driver support. NOTE: Experimental for now, SKR E3 Turbo and SKR 1.x boards only
 //#define TRINAMIC_ENABLE       5160 // Uncomment to enable Trinamic TMC5160 driver support. NOTE: Experimental for now, currently for SKR 1.x boards only
+#define TRINAMIC_EXTENDED_SETTINGS 1 // Enable advanced chopper mode and CoolStep parameters
 //#define LIMIT_MAX_ENABLE         1 // Uncomment to enable max limit input pins (when available) - NOTE: Disabled as pins are used for auto-squaring
 //#define EEPROM_ENABLE           16 // I2C EEPROM/FRAM support. Set to 16 for 2K, 32 for 4K, 64 for 8K, 128 for 16K and 256 for 16K capacity.
 //#define EEPROM_IS_FRAM          1 // Uncomment when EEPROM is enabled and chip is FRAM, this to remove write delay.
