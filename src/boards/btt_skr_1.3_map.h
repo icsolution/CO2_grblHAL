@@ -121,6 +121,10 @@ void board_init (void);
 #define M3_ENABLE_PN            2
 #define M3_ENABLE_PORT          port(M3_ENABLE_PN)
 #define M3_ENABLE_PIN           12
+// M3 limit switch for Y2 auto-squaring (Y_MAX header: P1.26)
+#define M3_LIMIT_PN             1
+#define M3_LIMIT_PORT           port(M3_LIMIT_PN)
+#define M3_LIMIT_PIN            26
 #endif
 
 // Define ganged axis or B axis step pulse and step direction output pins.
@@ -135,6 +139,10 @@ void board_init (void);
 #define M4_ENABLE_PN        0
 #define M4_ENABLE_PORT      port(M4_ENABLE_PN)
 #define M4_ENABLE_PIN       10
+// M4 limit switch for Z2 auto-squaring (Z_MAX header: P1.24)
+#define M4_LIMIT_PN         1
+#define M4_LIMIT_PORT       port(M4_LIMIT_PN)
+#define M4_LIMIT_PIN        24
 #endif
 
 // Define auxiliary output pins
