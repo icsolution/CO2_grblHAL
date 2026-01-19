@@ -57,22 +57,31 @@ const USBD_API_T *g_pUsbApi = &g_usbApi;
 static USBD_HANDLE_T g_hUsb;
 static enqueue_realtime_command_ptr enqueue_realtime_command = protocol_enqueue_realtime_command;
 
-/* Initialize pin and clocks for USB0/USB1 port */
+/* Initialize pin and clocks for USB0/USB1 port
+ * This follows the same sequence as Marlin's LPC1768 USB implementation */
 static void usb_pin_clk_init(void)
 {
+    /* Configure USB D+ and D- pins using direct register access (Marlin method)
+     * P0.29 = USB_D+, P0.30 = USB_D-
+     * PINSEL1 bits [27:26] for P0.29, bits [29:28] for P0.30 -> set to 01 for USB function */
+    LPC_IOCON->PINSEL[1] &= ~((3<<26)|(3<<28));  /* Clear PINSEL1 bits for P0.29, P0.30 */
+    LPC_IOCON->PINSEL[1] |=  ((1<<26)|(1<<28));  /* Set function 01 = USB D+/D- */
+
+    /* Configure USB SoftConnect pin using direct register access (Marlin method)
+     * P2.9 = USB_CONNECT (active low soft connect)
+     * PINSEL4 bits [19:18] for P2.9 -> set to 01 for USB_CONNECT function */
+    LPC_IOCON->PINSEL[4] &= ~(3<<18);           /* Clear PINSEL4 bits for P2.9 */
+    LPC_IOCON->PINSEL[4] |=  (1<<18);           /* Set function 01 = USB_CONNECT */
+
+    /* Enable USB peripheral power via PCONP register bit 31 (required!) */
+    LPC_SYSCTL->PCONP |= (1UL<<31);
+
     /* enable USB PLL and clocks */
     Chip_USB_Init();
 
-    /* enable USB 1 port on the board */
-
-    /* set a bias to this pin to enable the host system to detect and begin enumeration */
-    Chip_IOCON_PinMux(LPC_IOCON, 2, 9, IOCON_MODE_INACT, IOCON_FUNC1);  /* USB_CONNECT */
-
-    Chip_IOCON_PinMux(LPC_IOCON, 0, 29, IOCON_MODE_INACT, IOCON_FUNC1); /* P0.29 D1+, P0.30 D1- */
-    Chip_IOCON_PinMux(LPC_IOCON, 0, 30, IOCON_MODE_INACT, IOCON_FUNC1);
-
-    LPC_USB->USBClkCtrl = 0x12;                /* Dev, AHB clock enable */
-    while ((LPC_USB->USBClkSt & 0x12) != 0x12);
+    /* Enable USB clocks: Dev, PortSel, AHB */
+    LPC_USB->USBClkCtrl = 0x1A;
+    while ((LPC_USB->USBClkSt & 0x1A) != 0x1A);
 }
 
 /**
@@ -278,7 +287,7 @@ static bool usbSuspendInput (bool suspend)
     return stream_rx_suspend(&rxbuf, suspend);
 }
 
-static bool usbEnqueueRtCommand (int32_t c)
+static bool usbEnqueueRtCommand (uint8_t c)
 {
     return enqueue_realtime_command(c);
 }

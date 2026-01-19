@@ -23,7 +23,7 @@
 // If none is enabled pin mappings from generic_map.h will be used
 //#define SMOOTHIEBOARD
 //#define BOARD_RAMPS_16
-//#define BOARD_BTT_SKR_13
+#define BOARD_BTT_SKR_13
 //#define BOARD_BTT_SKR_14_TURBO
 //#define BOARD_BTT_SKR_E3_TURBO  // With onboard Trinamic TNMC2209 drivers. NOTE: not verified!
 //#define BOARD_MKS_SBASE_13
