@@ -59,7 +59,7 @@
 //#define TRINAMIC_ENABLE       2130 // Uncomment to enable Trinamic TMC2130 driver support. NOTE: Experimental for now, currently for SKR 1.x boards only
 //#define TRINAMIC_ENABLE       2209 // Uncomment to enable Trinamic TMC2209 driver support. NOTE: Experimental for now, SKR E3 Turbo and SKR 1.x boards only
 //#define TRINAMIC_ENABLE       5160 // Uncomment to enable Trinamic TMC5160 driver support. NOTE: Experimental for now, currently for SKR 1.x boards only
-//#define LIMIT_MAX_ENABLE         1 // Uncomment to enable max limit input pins (when available)
+//#define LIMIT_MAX_ENABLE         1 // Uncomment to enable max limit input pins (when available) - NOTE: Disabled as pins are used for auto-squaring
 //#define EEPROM_ENABLE           16 // I2C EEPROM/FRAM support. Set to 16 for 2K, 32 for 4K, 64 for 8K, 128 for 16K and 256 for 16K capacity.
 //#define EEPROM_IS_FRAM          1 // Uncomment when EEPROM is enabled and chip is FRAM, this to remove write delay.
 #define ESTOP_ENABLE             0 // When enabled only real-time report requests will be executed when the reset pin is asserted.
@@ -79,14 +79,17 @@
 //#define SINGLE_BLOCK_ENABLE     1
 //#define LIMITS_OVERRIDE_ENABLE  1
 
+// Disable reset input pin (P0.18) to prevent Error 18 from floating input
+#define CONTROL_ENABLE          (CONTROL_FEED_HOLD|CONTROL_CYCLE_START)
+
 // If the selected board map supports more than three motors ganging and/or auto-squaring
 // of axes can be enabled here.
 //#define X_GANGED            1
 //#define X_AUTO_SQUARE       1
-//#define Y_GANGED            1
-//#define Y_AUTO_SQUARE       1
-//#define Z_GANGED            1
-//#define Z_AUTO_SQUARE       1
+#define Y_GANGED            1
+#define Y_AUTO_SQUARE       1
+#define Z_GANGED            1
+#define Z_AUTO_SQUARE       1
 // For ganged axes the limit switch input (if available) can be configured to act as a max travel limit switch.
 // NOTE: If board map already has max limit inputs defined this configuration will be ignored.
 //#define X_GANGED_LIM_MAX    1
