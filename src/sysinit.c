@@ -80,8 +80,9 @@ void SystemInit(void)
 #endif
 
 #if defined(NO_BOARD_LIB)
-	/* Chip specific SystemInit */
-//	Chip_SystemInit();
+	/* Chip specific SystemInit - Use crystal clocking for USB support
+	 * The SKR v1.3 board has a 12MHz crystal required for USB PLL1 */
+	Chip_SetupXtalClocking();
 #else
 	/* Setup system clocking and muxing */
 	Board_SystemInit();
