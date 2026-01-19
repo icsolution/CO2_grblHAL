@@ -57,7 +57,7 @@
 //#define LASER_COOLANT_ENABLE     1 // Laser coolant plugin. To be completed.
 //#define LB_CLUSTERS_ENABLE       1 // LaserBurn cluster support.
 //#define TRINAMIC_ENABLE       2130 // Uncomment to enable Trinamic TMC2130 driver support. NOTE: Experimental for now, currently for SKR 1.x boards only
-//#define TRINAMIC_ENABLE       2209 // Uncomment to enable Trinamic TMC2209 driver support. NOTE: Experimental for now, SKR E3 Turbo and SKR 1.x boards only
+#define TRINAMIC_ENABLE       2209 // Uncomment to enable Trinamic TMC2209 driver support. NOTE: Experimental for now, SKR E3 Turbo and SKR 1.x boards only
 //#define TRINAMIC_ENABLE       5160 // Uncomment to enable Trinamic TMC5160 driver support. NOTE: Experimental for now, currently for SKR 1.x boards only
 //#define LIMIT_MAX_ENABLE         1 // Uncomment to enable max limit input pins (when available) - NOTE: Disabled as pins are used for auto-squaring
 //#define EEPROM_ENABLE           16 // I2C EEPROM/FRAM support. Set to 16 for 2K, 32 for 4K, 64 for 8K, 128 for 16K and 256 for 16K capacity.
