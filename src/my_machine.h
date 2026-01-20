@@ -54,8 +54,11 @@
                                      // 2: Mode switching is by the CMD_MPG_MODE_TOGGLE command character.
 //#define KEYPAD_ENABLE            2 // 1: uses a I2C keypad for input.
                                      // 2: uses a serial port for input. If MPG_ENABLE is set > 0 the serial stream is shared with the MPG.
-//#define LASER_COOLANT_ENABLE     1 // Laser coolant plugin. To be completed.
-//#define LB_CLUSTERS_ENABLE       1 // LaserBurn cluster support.
+// Laser plugins - see Plugins_laser for details
+#define PPI_ENABLE               1 // Laser PPI (Pulses Per Inch) mode - testing
+// #define LASER_COOLANT_ENABLE     1 // Laser coolant monitoring - uses aux port 0 (P2.0) which has IRQ capability
+#define LB_CLUSTERS_ENABLE       1 // LightBurn cluster support - unpacks clustered S commands for faster engraving
+#define LASER_OVD_ENABLE         1 // CO2 laser overdrive - testing
 //#define TRINAMIC_ENABLE       2130 // Uncomment to enable Trinamic TMC2130 driver support. NOTE: Experimental for now, currently for SKR 1.x boards only
 #define TRINAMIC_ENABLE       2209 // Uncomment to enable Trinamic TMC2209 driver support. NOTE: Experimental for now, SKR E3 Turbo and SKR 1.x boards only
 //#define TRINAMIC_ENABLE       5160 // Uncomment to enable Trinamic TMC5160 driver support. NOTE: Experimental for now, currently for SKR 1.x boards only
@@ -63,7 +66,7 @@
 //#define LIMIT_MAX_ENABLE         1 // Uncomment to enable max limit input pins (when available) - NOTE: Disabled as pins are used for auto-squaring
 //#define EEPROM_ENABLE           16 // I2C EEPROM/FRAM support. Set to 16 for 2K, 32 for 4K, 64 for 8K, 128 for 16K and 256 for 16K capacity.
 //#define EEPROM_IS_FRAM          1 // Uncomment when EEPROM is enabled and chip is FRAM, this to remove write delay.
-#define ESTOP_ENABLE             0 // When enabled only real-time report requests will be executed when the reset pin is asserted.
+// #define ESTOP_ENABLE             1 // When enabled only real-time report requests will be executed when the reset pin is asserted.
                                    // Note: if commented out the default setting is determined from COMPATIBILITY_LEVEL.
 // Optional control signals:
 // These will be assigned to aux input pins. Use the $pins command to check which pins are assigned.
@@ -80,8 +83,8 @@
 //#define SINGLE_BLOCK_ENABLE     1
 //#define LIMITS_OVERRIDE_ENABLE  1
 
-// Disable reset input pin (P0.18) to prevent Error 18 from floating input
-#define CONTROL_ENABLE          (CONTROL_FEED_HOLD|CONTROL_CYCLE_START)
+// Enable reset input pin (P0.18) for ESTOP
+#define CONTROL_ENABLE          (CONTROL_HALT|CONTROL_FEED_HOLD|CONTROL_CYCLE_START)
 
 // If the selected board map supports more than three motors ganging and/or auto-squaring
 // of axes can be enabled here.
