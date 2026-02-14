@@ -80,8 +80,8 @@
 //#define SINGLE_BLOCK_ENABLE     1
 //#define LIMITS_OVERRIDE_ENABLE  1
 
-// Disable reset input pin (P0.18) to prevent Error 18 from floating input
-#define CONTROL_ENABLE          (CONTROL_FEED_HOLD|CONTROL_CYCLE_START)
+// Disable all control input pins (P0.15, P0.16, P0.18) to prevent errors from floating EXP2 inputs
+#define CONTROL_ENABLE          0
 
 // If the selected board map supports more than three motors ganging and/or auto-squaring
 // of axes can be enabled here.

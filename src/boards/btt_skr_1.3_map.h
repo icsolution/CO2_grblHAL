@@ -195,8 +195,8 @@ void board_init (void);
 
 #define AUXINPUT0_PORT          port(2) // Servos - MPG mode
 #define AUXINPUT0_PIN           0
-#define AUXINPUT1_PORT          port(0) // EXP2-1 - Probe
-#define AUXINPUT1_PIN           17
+#define AUXINPUT1_PORT          port(1) // X_MAX header - Probe (remapped from EXP2 P0.17)
+#define AUXINPUT1_PIN           28
 #define AUXINPUT2_PORT          port(0) // EXP2-6 - Reset/EStop
 #define AUXINPUT2_PIN           18
 #define AUXINPUT3_PORT          port(0) // EXP2-4 - Feed hold
